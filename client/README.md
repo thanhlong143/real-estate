@@ -4,6 +4,7 @@
 3. yarn add -D tailwindcss postcss autoprefixer
 4. npx tailwindcss init -p
 5. npx shadcn@latest init
+6. yarn add react-router-dom axios react-hook-form               
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

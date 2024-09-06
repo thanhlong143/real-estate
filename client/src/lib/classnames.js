@@ -1,0 +1,1 @@
+export const navigationItemClassName = 'rounded-md hover:bg-stone-100 cursor-ponter px-4 py-[6px] text-sm'
