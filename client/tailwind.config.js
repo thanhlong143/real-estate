@@ -7,12 +7,15 @@ export default {
   ],
   theme: {
   	extend: {
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		colors: {}
+      colors: {
+        main: '#005163',
+        primary: '#091a2b',
+        secondary:'#f1f3f4'
+      },
+      backgroundColor: {
+        main: '#005163',
+        primary: '#f1f3f4',
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],
