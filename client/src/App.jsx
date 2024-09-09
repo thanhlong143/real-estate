@@ -3,7 +3,7 @@ import { Button } from "./components/ui/button"
 
 const App = () => {
   return (
-    <main>
+    <main className="text-primary">
       <Outlet />
     </main>
   )

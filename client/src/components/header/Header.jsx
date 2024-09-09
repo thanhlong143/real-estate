@@ -19,7 +19,7 @@ const Header = () => {
    return (
       <div className='h-24 p-4 flex shadow items-center justify-between'>
          <div className='flex items-center gap-6'>
-            <Link to={'/'} className='text-5xl tracking-widest text-shadow text-blue-600 font-bold'>
+            <Link to={'/'} className='text-5xl tracking-widest text-shadow text-main font-bold'>
                PITAYA
             </Link>
             <NavigationMenu>
@@ -45,7 +45,7 @@ const Header = () => {
                <DialogTrigger asChild>
                   <Button className='bg-transparent text-stone-900 hover:bg-transparent hover:underline'>Đăng nhập / Đăng ký</Button>
                </DialogTrigger>
-               <DialogContent isHideClose={true} className='min-w-[700px] p-0'>
+               <DialogContent isHideClose={true} className='min-w-[800px] p-0'>
                   <DialogHeader>
                      <DialogTitle />
                      <Login />

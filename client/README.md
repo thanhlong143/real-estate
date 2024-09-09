@@ -6,6 +6,10 @@
 5. npx shadcn@latest init
 6. yarn add react-router-dom axios react-hook-form
 7. npx shadcn@latest add dialog
+8. npx shadcn@latest add form 
+9. npx shadcn@latest add input
+10. yarn add prop-types
+11. yarn add @react-oauth/google@latest
 
 
 
