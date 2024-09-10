@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
   :root {
@@ -11,7 +11,7 @@
 }
 
 html {
-  font-family: "Questrial", sans-serif;
+  font-family: 'Questrial', sans-serif;
 }
 
 .text-shadow {

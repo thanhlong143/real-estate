@@ -1,6 +1,6 @@
-import App from "./App"
-import { pathNames } from "./lib/pathNames"
-import { Homepage, News, PublicLayout, RentProperty, SoldProperty } from "./pages/public"
+import App from './App'
+import { pathNames } from './lib/pathNames'
+import { Homepage, News, PublicLayout, RentProperty, SoldProperty } from './pages/public'
 
 const routes = [
    {

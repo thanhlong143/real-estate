@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 import { navigationItemClassName } from '@/lib/classnames'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Login } from '../login'
+import { Login } from '@/components/login'
 
 const Header = () => {
    return (
