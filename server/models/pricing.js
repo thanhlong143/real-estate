@@ -16,10 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Pricing.init({
     name: {
-      name: {
-        type: DataTypes.ENUM,
-        values: enumData.pricings
-      }
+      type: DataTypes.ENUM,
+      values: enumData.pricings
     },
     isDisplayImmedialy: DataTypes.BOOLEAN,
     isShowDescription: DataTypes.BOOLEAN,
