@@ -10,6 +10,7 @@
 9. npx shadcn@latest add input
 10. yarn add prop-types
 11. yarn add @react-oauth/google@latest
+12. yarn add zustand
 
 
 
