@@ -24,16 +24,24 @@ module.exports = {
 
       return res.json({
          success: !!token,
-         accessToken: token
+         accessToken: token,
+         message: token ? 'Đăng nhập thành công!' : 'Đăng nhập thất bại!'
       })
    }),
 
    checkNewUserFromEmail: asyncHandler(async (req, res) => {
       const { email } = req.params
+
       const user = await db.User.findOne({ where: { email } })
+
+      let token = null
+      if (user) token = jwt.sign({ uid: user.id }, process.env.SECRET_JWT_KEY, { expiresIn: '7d' })
+
       return res.json({
          success: true,
-         hasUser: !!user
+         hasUser: !!user,
+         accessToken: token,
+         message: token ? 'Đăng nhập thành công!' : 'New user'
       })
    })
 }

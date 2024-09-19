@@ -3,7 +3,7 @@ import axios from "axios";
 const axiosInstance = axios.create({ baseURL: import.meta.env.VITE_SERVER_URL })
 
 axiosInstance.interceptors.request.use((config) => {
-   const store = window.localStorage.getItem('real_estate/me')
+   const store = window.sessionStorage.getItem('real-estate/me')
    if (store) {
       const parsedStore = JSON.parse(store)
       if (parsedStore && parsedStore.state?.token) {

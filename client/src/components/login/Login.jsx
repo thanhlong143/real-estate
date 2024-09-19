@@ -10,6 +10,8 @@ import { apiGetCredentialsFromAccessToken } from '@/apis/externals'
 import { apiCheckNewUser } from '@/apis/auth'
 import { SetupPassword } from '.'
 import useMyStore from '@/zustand/useMyStore'
+import PropTypes from 'prop-types'
+import { toast } from 'sonner'
 
 const formSchema = z.object({
    emailOrPhone: z.string().min(1, { message: 'Bắt buộc' }),
@@ -17,7 +19,7 @@ const formSchema = z.object({
    password: z.string().min(5, { message: 'Mật khẩu tối thiểu 6 kí tự' }),
 })
 
-const Login = () => {
+const Login = ({ onClose }) => {
 
    const form = useForm({
       resolver: zodResolver(formSchema),
@@ -31,7 +33,7 @@ const Login = () => {
    const [variant, setVariant] = useState('SIGNIN')
    const [isSetupPassword, setIsSetupPassword] = useState(false)
 
-   const { setGoogleData } = useMyStore()
+   const { setGoogleData, setToken } = useMyStore()
 
    const toggleVariant = () => {
       if (variant === 'SIGNIN') setVariant('SIGNUP')
@@ -50,13 +52,18 @@ const Login = () => {
             })
             const user = await apiCheckNewUser(response.data.email)
             if (user.data.hasUser) {
-
+               setToken(user.data.accessToken)
+               toast.success(user.data.message)
+               onClose()
             } else {
                setIsSetupPassword(true)
             }
          }
       },
-      onError: error => console.log(error),
+      onError: (error) => {
+         console.log(error);
+         toast.error('Đăng nhập không thành công!')
+      },
    })
 
 
@@ -96,9 +103,12 @@ const Login = () => {
                </span>
             </p>
          </div>}
-         {isSetupPassword && <SetupPassword />}
+         {isSetupPassword && <SetupPassword onClose={onClose} />}
       </div>
    )
 }
 
 export default Login
+Login.propTypes = {
+   onClose: PropTypes.func.isRequired,
+}

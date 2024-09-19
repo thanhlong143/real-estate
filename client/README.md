@@ -10,8 +10,8 @@
 9. npx shadcn@latest add input
 10. yarn add prop-types
 11. yarn add @react-oauth/google@latest
-12. yarn add zustand
-
+12. yarn add zustand@4.5.4
+13. npx shadcn@latest add sonner
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

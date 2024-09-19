@@ -6,7 +6,7 @@ import {
    NavigationMenuList,
    NavigationMenuTrigger
 } from '@/components/ui/navigation-menu'
-import React, { Fragment } from 'react'
+import React, { Fragment, useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
 import navigation from './navigation'
 import { cn } from '@/lib/utils'
@@ -14,8 +14,18 @@ import { navigationItemClassName } from '@/lib/classnames'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Login } from '@/components/login'
+import useMyStore from '@/zustand/useMyStore'
 
 const Header = () => {
+
+   const [isShowDialog, setIsShowDialog] = useState(false)
+   const { token } = useMyStore()
+   console.log(token);
+
+   const onClose = useCallback(() => {
+      setIsShowDialog(false)
+   }, [])
+
    return (
       <div className='h-24 p-4 flex shadow items-center justify-between'>
          <div className='flex items-center gap-6'>
@@ -41,14 +51,19 @@ const Header = () => {
             </NavigationMenu>
          </div>
          <div className='flex items-center gap-3'>
-            <Dialog>
+            <Dialog onOpenChange={(isOpen) => setIsShowDialog(isOpen)} open={isShowDialog}>
                <DialogTrigger asChild>
-                  <Button className='bg-transparent text-stone-900 hover:bg-transparent hover:underline'>Đăng nhập / Đăng ký</Button>
+                  <Button
+                     onClick={() => setIsShowDialog(true)}
+                     className='bg-transparent text-stone-900 hover:bg-transparent hover:underline'
+                  >
+                     Đăng nhập / Đăng ký
+                  </Button>
                </DialogTrigger>
-               <DialogContent isHideClose={true} className='min-w-[800px] p-0'>
+               <DialogContent isHideClose={false} className='min-w-[800px] p-0'>
                   <DialogHeader>
                      <DialogTitle />
-                     <Login />
+                     <Login onClose={onClose} />
                   </DialogHeader>
                </DialogContent>
             </Dialog>
