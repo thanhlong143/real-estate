@@ -33,7 +33,7 @@ const Login = ({ onClose }) => {
    const [variant, setVariant] = useState('SIGNIN')
    const [isSetupPassword, setIsSetupPassword] = useState(false)
 
-   const { setGoogleData, setToken } = useMyStore()
+   const { setToken } = useMyStore()
 
    const toggleVariant = () => {
       if (variant === 'SIGNIN') setVariant('SIGNUP')
@@ -44,12 +44,12 @@ const Login = ({ onClose }) => {
       onSuccess: async (tokenResponse) => {
          const response = await apiGetCredentialsFromAccessToken(tokenResponse.access_token)
          if (response.status === 200) {
-            setGoogleData({
-               email: response.data.email,
-               avatar: response.data.picture,
-               fullname: response.data.name,
-               emailVerified: response.data.verified_email
-            })
+            // setGoogleData({
+            //    email: response.data.email,
+            //    avatar: response.data.picture,
+            //    fullname: response.data.name,
+            //    emailVerified: response.data.verified_email
+            // })
             const user = await apiCheckNewUser(response.data.email)
             if (user.data.hasUser) {
                setToken(user.data.accessToken)

@@ -1,3 +1,4 @@
+import { apiGetMe } from '@/apis/user'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
@@ -6,11 +7,20 @@ const useMyStore = create(
       (set) => ({
          token: null,
          me: null,
-         googleData: null,
+         // googleData: null,
          setToken: token => set(() => ({ token })),
          setMe: me => set(() => ({ me })),
-         setGoogleData: (data) => set(() => ({ googleData: data }))
-         // getMe: 
+         // setGoogleData: (googleData) => set(() => ({ googleData })),
+         getMe: async () => {
+            const response = await apiGetMe()
+            console.log(response);
+            if (response.data.success) {
+               return set(() => ({ me: response.data.user }))
+            } else {
+               return set(() => ({ me: null, token: null }))
+            }
+         },
+         logout: () => set(() => ({ token: null, me: null }))
       }),
       {
          name: 'real-estate/me',

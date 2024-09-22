@@ -10,17 +10,19 @@ import React, { Fragment, useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
 import navigation from './navigation'
 import { cn } from '@/lib/utils'
-import { navigationItemClassName } from '@/lib/classnames'
+import { navigationItemClassName, resetOutline } from '@/lib/classnames'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Login } from '@/components/login'
 import useMyStore from '@/zustand/useMyStore'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import menu from './menu'
+import { LogOut } from 'lucide-react'
 
 const Header = () => {
 
    const [isShowDialog, setIsShowDialog] = useState(false)
-   const { token } = useMyStore()
-   console.log(token);
+   const { me, logout } = useMyStore()
 
    const onClose = useCallback(() => {
       setIsShowDialog(false)
@@ -51,7 +53,7 @@ const Header = () => {
             </NavigationMenu>
          </div>
          <div className='flex items-center gap-3'>
-            <Dialog onOpenChange={(isOpen) => setIsShowDialog(isOpen)} open={isShowDialog}>
+            {!me ? (<Dialog onOpenChange={(isOpen) => setIsShowDialog(isOpen)} open={isShowDialog}>
                <DialogTrigger asChild>
                   <Button
                      onClick={() => setIsShowDialog(true)}
@@ -66,7 +68,25 @@ const Header = () => {
                      <Login onClose={onClose} />
                   </DialogHeader>
                </DialogContent>
-            </Dialog>
+            </Dialog>) : (
+               <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                     <Button className={resetOutline} variant='transparent'>{me.fullname}</Button>
+                     </DropdownMenuTrigger>
+                     <DropdownMenuContent>
+                        {menu.map(el => <DropdownMenuItem>
+                           <Link className='flex items-center gap-2' to={el.path}>
+                              {el.icon}
+                              {el.label}
+                           </Link>
+                        </DropdownMenuItem>)}
+                        <DropdownMenuItem onClick={() => logout()} className='flex items-center gap-2'>
+                           <LogOut size={14} />
+                           <span>Đăng xuất</span>
+                        </DropdownMenuItem>
+                     </DropdownMenuContent>
+               </DropdownMenu>
+            )}
             <Button size='lg' variant='outline'>Đăng tin</Button>
          </div>
       </div>

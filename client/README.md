@@ -12,6 +12,7 @@
 11. yarn add @react-oauth/google@latest
 12. yarn add zustand@4.5.4
 13. npx shadcn@latest add sonner
+14. npx shadcn@latest add dropdown-menu
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
