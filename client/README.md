@@ -13,6 +13,8 @@
 12. yarn add zustand@4.5.4
 13. npx shadcn@latest add sonner
 14. npx shadcn@latest add dropdown-menu
+15. npx shadcn@latest add carousel
+16. npx shadcn@latest add tabs
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
